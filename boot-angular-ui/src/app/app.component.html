@@ -1,0 +1,25 @@
+<div style="text-align:center" class="container">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+  <div class="container">
+    Channel number :<p>{{data[1].fName}}</p>
+    Channel ID :<p>{{data[1].lName}}</p>
+    Channel name :<p>{{data[1].address}}</p>
+
+
+    <tr *ngFor="let movie of data;">
+      <!--<td>{{i + 1}}</td>-->
+      <td>{{movie.fName}}</td>
+      <td>{{movie.lName}}</td>
+      <td>{{movie.address}}</td>
+      <!--<br></br>-->
+    </tr>
+
+    <p>Id: <span>{{data.id}}</span></p>
+    <p>Message: <span>{{data.content}}</span></p>
+  </div>
+</div>
+
+
+

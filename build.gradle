@@ -1,0 +1,69 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven{ url "https://plugins.gradle.org/m2" }
+
+//maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("com.moowork.gradle:gradle-node-plugin:1.1.1")
+    }
+}
+
+apply plugin: 'com.moowork.node'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+
+// https://mvnrepository.com/artifact/org.projectlombok/lombok
+//    provided group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+}
+
+node{
+    version = '10.1.0'
+    download = true
+    nodeModulesDir = file("boot-angular-ui")
+}
+
+task buildClientDev(type:NpmTask, dependsOn: 'npmInstall') {
+            group = 'build'
+            description = 'Complie client side assets for development'
+            args =['run','buildDev']
+}
+
+task buildClient(type:NpmTask, dependsOn: 'npmInstall') {
+            group = 'build'
+            description = 'Complie client side assets for prod'
+            args =['run','build']
+}
+
+task buildClientWatch(type:NpmTask, dependsOn: 'npmInstall') {
+            group = 'build'
+            description = 'Builds and watches the client side assets for rebuilding'
+            args =['run','buildWatch']
+        }
+
+//task clientTest(type:NpmTask, dependsOn: 'npmInstall'){ //	group = 'verfication' //	description = 'Executes client side unit tests' //	args =['run','test'] //}
+
+bootRun.dependsOn(buildClientDev)
+jar.dependsOn(buildClient)
