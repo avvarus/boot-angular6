@@ -1,6 +1,4 @@
 package com.example.bootangular.controller;
-
-
 import com.example.bootangular.model.Topic;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -8,12 +6,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
+
 @RestController
 public class UserController {
 
 
     @GetMapping(value = "/user")
     public String getUser(){ return "Soon you will get the list !!!"; }
+
 
     @GetMapping("/resource")
     @ResponseBody
