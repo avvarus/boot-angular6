@@ -13,5 +13,5 @@ export class AppComponent {
 
   constructor(private http: HttpClient) {
     http.get('user1').subscribe(data => this.data = data);
-  }
+    }
 }
