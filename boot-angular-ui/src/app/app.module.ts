@@ -7,14 +7,14 @@ import {RouterModule,Routes} from "@angular/router";
 import { AppComponent } from './app.component';
 import { FirstComponent } from './first/first.component';
 import {AppRoutingModule, routingComponents} from "./app-routing.module";
+import { SecondComponent } from './second/second.component';
 
-
-//const routes: Routes =[{path:'/first',component:FirstComponent}]
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    SecondComponent
   ],
   imports: [
    // RouterModule.forRoot(routes),
